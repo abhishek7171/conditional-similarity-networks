@@ -259,7 +259,6 @@ def test(test_loader, tnet, criterion, epoch):
         losses.avg, 100. * accs.avg))
     if args.visdom:
         for condition in conditions:
-            plotter.plot('accs', 'acc_{}'.format(condition), epoch, accs_cs[condition].avg)
         plotter.plot(args.name, args.name, epoch, accs.avg, env='overview')
         plotter.plot('acc', 'test', epoch, accs.avg)
         plotter.plot('loss', 'test', epoch, losses.avg)
@@ -294,7 +293,8 @@ class VisdomLinePlotter(object):
                 ylabel=var_name
             ))
         else:
-            self.viz.updateTrace(X=np.array([x]), Y=np.array([y]), env=print_env, win=self.plots[var_name], name=split_name)
+            #self.viz.updateTrace(X=np.array([x]), Y=np.array([y]), env=print_env, win=self.plots[var_name], name=split_name)
+            self.viz.line(X=np.array([x]), Y=np.array([y]), env=print_env, win=self.plots[var_name],name=split_name)
     def plot_mask(self, masks, epoch):
         self.viz.bar(
             X=masks,
