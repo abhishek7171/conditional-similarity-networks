@@ -7,7 +7,7 @@ class CS_Tripletnet(nn.Module):
         super(CS_Tripletnet, self).__init__()
         self.embeddingnet = embeddingnet
 
-    def forward(self, x, y, z, c, load_all_memory=False):
+    def forward(self, x, y=0, z=0, c=None, load_all_memory=False):
         """ x: Anchor image,
             y: Distant (negative) image,
             z: Close (positive) image,
